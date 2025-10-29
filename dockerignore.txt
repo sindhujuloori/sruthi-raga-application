@@ -1,0 +1,24 @@
+Ignore Python build artifacts and cache
+
+pycache
+*.pyc
+*.pyo
+*.pyd
+.venv
+venv
+
+Ignore the temporary directory used by the Flask app for uploads
+
+uploads/
+
+Ignore version control artifacts and IDE files
+
+.git
+.gitignore
+.DS_Store
+.vscode/
+.idea/
+
+Ignore environment files
+
+.env
