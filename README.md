@@ -1,13 +1,12 @@
 # 🎵 Carnatic Raga Detection API
 
-This is a **RESTful API** designed to analyze uploaded audio of a single Carnatic music passage and predict the likely Raga (scale) by identifying the set of *swaras* (notes) present.
+This is a **RESTful API** designed to analyze uploaded audio of a single Carnatic music passage and predict the likely Raga (carnatic raga) by identifying the set of *swaras* (notes) present.
 
 The core service is built on Flask and utilizes the `librosa` library for pitch detection and swara mapping relative to a given or detected tonic (Sruthi).
 
 ### Key Features
 
 * **Audio Upload:** Accepts a standard audio file (e.g., `.wav`, `.mp3`) for analysis.
-* **Tonic Handling:** Automatically estimates the tonic frequency (Sa) if one is not explicitly provided.
 * **Swara Identification:** Maps detected pitches to the 12 standard Swara indices (0-11).
 * **Raga Matching:** Compares the detected swara set against a database of Carnatic Ragas (Melakarta and Janya) and provides a ranked list of matches.
 
@@ -30,6 +29,11 @@ The API has one primary endpoint. It accepts **POST** requests via form-data.
 curl -X POST \
   -F 'audio_file=@test_swara.mp3' \
   https://[YOUR_API_DOMAIN]/analyze
+
+curl -X POST "https://raga-api1-837114394538.us-central1.run.app/analyze" \
+-H "Authorization: bearer $(gcloud auth print-identity-token)" \
+-F "audio_file=@/home/sindhujuloori62/sruthi-detector-poc/test_swara.mp3" \
+-F "tonic_hz=207.6"
 
 
 Example JSON Response
