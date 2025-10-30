@@ -16,6 +16,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
+# --- NEW: Health Check Route ---
+@app.route('/', methods=['GET'])
+def health_check():
+    """Simple GET route for Cloud Run and external health checks."""
+    return jsonify({"status": "raga-api is operational"}), 200
+
 @app.route('/analyze', methods=['POST'])
 def analyze_audio():
     
